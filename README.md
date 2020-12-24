@@ -44,6 +44,9 @@ Tested with Mail for OS X Cataina.
 4. In mail, open Preferences -> General -> Manage Plug-ins, and enable Gmailinator.
 5. You will be prompted to restart Mail
 
+## Allow usage in Big Sur
+Run `spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle` to allow it to be loaded because it's not code-signed.
+
 ## Credits
 
 A lot of this was built with heavy use of of the
