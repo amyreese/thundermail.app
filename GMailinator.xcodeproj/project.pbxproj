@@ -318,7 +318,7 @@
 				GCC_PREFIX_HEADER = "GMailinator/GMailinator-Prefix.pch";
 				INFOPLIST_FILE = GMailinator/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Mail/Bundles";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GMailinator;
 				WRAPPER_EXTENSION = mailbundle;
@@ -335,7 +335,7 @@
 				GCC_PREFIX_HEADER = "GMailinator/GMailinator-Prefix.pch";
 				INFOPLIST_FILE = GMailinator/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Mail/Bundles";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GMailinator;
 				WRAPPER_EXTENSION = mailbundle;
