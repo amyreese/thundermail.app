@@ -3,7 +3,7 @@
 Adds Gmail-esque keyboard shorcuts to Mail.app.  This is still very much a work
 in progress.
 
-Tested with Mail for OS X Cataina.
+Tested with Mail for macOS Big Sur.
 
 ## Supported Shortcuts
 
