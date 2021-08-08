@@ -45,7 +45,16 @@ Tested with Mail for macOS Big Sur.
 5. You will be prompted to restart Mail
 
 ## Allow usage in Big Sur
-Run `spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle` to allow it to be loaded because it's not code-signed.
+
+- Codesign the bundle
+```
+codesign -s "<Replace with the identity>" -v -f GMailinator.mailbundle/
+```
+
+- Allow in system policy
+```
+spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
+```
 
 ## Credits
 
