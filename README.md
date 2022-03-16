@@ -57,6 +57,9 @@ Alternatively, you can enable "Automatically manage signing" in Xcode:
   - Now mail bundle will automatically be signed on Xcode build
 
 2. Allow in system policy
+```
+-spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
+```
 
 ## Credits
 
