@@ -36,9 +36,9 @@ SearchManager *_sm;
  * they common keyDown:.
  */
 + (void)setupClass:(Class)cls swappingKeyDownWith:(SEL)overrideSelector {
-    if (DEBUG) {
+    #ifdef DEBUG
         [self logAllSelectorsFromClass:cls];
-    }
+    #endif
 
     if (cls == nil)
         return;
