@@ -30,19 +30,15 @@ Tested with Mail for macOS Big Sur.
 |   v    |  View raw message dialog       |
 |   z    |  Undo                          |
 
-## How to install
+## How to install/update
 
-1. Grab the latest build from Github releases
-2. Unzip to ~/Library/Mail/Bundles
-3. Enable Mail.app plugins:
-       `defaults write com.apple.mail EnableBundles -bool true`
-
-## How to install (Mojave onwards)
-1. Build the project or download it from Github releases
-2. In the Finder, open /tmp/Gmailinator and ~/Library/Mail/Bundles
-3. Copy the GMailinator.mailbundle folder from /tmp/Gmailinator to ~/Library/Mail/Bundles
-4. In mail, open Preferences -> General -> Manage Plug-ins, and enable Gmailinator.
-5. You will be prompted to restart Mail
+1. Clone or download the repository from GitHub
+2. Run `./install.sh`.
+    * You can do this by opening a Terminal, drag the install script from Finder, and press return.
+    * You will be prompted for authentication to allow the plugin by `spctl`.
+3. In Mail, open Settings -> General -> Manage Plug-ins, and enable Gmailinator.
+    * If you don’t see the "Manage Plug-ins" button, try quitting and re-opening Mail.
+4. You will be prompted to restart Mail to activate the plugin.
 
 ## Allow usage in Big Sur
 
