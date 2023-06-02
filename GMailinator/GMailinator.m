@@ -36,9 +36,9 @@ SearchManager *_sm;
  * they common keyDown:.
  */
 + (void)setupClass:(Class)cls swappingKeyDownWith:(SEL)overrideSelector {
-    if (DEBUG) {
+    #ifdef DEBUG
         [self logAllSelectorsFromClass:cls];
-    }
+    #endif
 
     if (cls == nil)
         return;
@@ -101,6 +101,8 @@ SearchManager *_sm;
     unichar key = [[event characters] characterAtIndex:0];
     BOOL performed = YES;
 
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wundeclared-selector"
     switch (key) {
     case '#': {
         [messageViewer performSelector:@selector(deleteMessages:)
@@ -160,6 +162,7 @@ SearchManager *_sm;
     default:
         performed = NO;
     }
+    #pragma clang diagnostic pop
     return performed;
 }
 
@@ -259,11 +262,14 @@ SearchManager *_sm;
 
     // NOTE: backwards compatibility. In 10.11 and earlier,
     // tableViewManager.delegate.delegate was already the message viewer.
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wundeclared-selector"
     id messageViewer =
         [messageListViewController respondsToSelector:@selector(messageViewer)]
             ? [messageListViewController
                   performSelector:@selector(messageViewer)]
             : messageListViewController;
+    #pragma clang diagnostic pop
 
     if (![self performSelectorOnMessageViewer:messageViewer
                                  basedOnEvent:event]) {

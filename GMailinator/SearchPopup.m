@@ -57,6 +57,8 @@
     // update menu items
     [[submenu delegate] menuNeedsUpdate:submenu];
 
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wundeclared-selector"
     // set message handling to copy / move
     if ([submenu respondsToSelector:@selector
                  (_sendMenuOpeningNotification:)]) { // Yosemite 10.10.2
@@ -65,6 +67,7 @@
                         (_sendMenuOpeningNotification)]) {
         [submenu performSelector:@selector(_sendMenuOpeningNotification)];
     }
+    #pragma clang diagnostic pop
 
     //	if ([p lastFolder] != nil)
     //    {
