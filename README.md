@@ -40,21 +40,13 @@ Tested with Mail for macOS Big Sur.
     * If you don’t see the "Manage Plug-ins" button, try quitting and re-opening Mail.
 4. You will be prompted to restart Mail to activate the plugin.
 
-## Allow usage in Big Sur
+## Troubleshooting
 
-1. Codesign the bundle
+- For older macOS version, it may not need to do `spctl`. Try to comment out the line in install.sh and try again.
+
+- Try to do codesign
 ```
 codesign -s "<Replace with the identity>" -v -f GMailinator.mailbundle/
-```
-Alternatively, you can enable "Automatically manage signing" in Xcode:
-  - Under the "Signing and Capabilities" tab (find this by clicking GMailinator root in sidebar)
-  - Check "Automatically manage signing"
-  - Change "Team" dropdown. You'll need to do some setup if you don't have a team
-  - Now mail bundle will automatically be signed on Xcode build
-
-2. Allow in system policy
-```
-spctl --add ~/Library/Mail/Bundles/GMailinator.mailbundle
 ```
 
 ## Credits
