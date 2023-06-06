@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -145,7 +145,8 @@
 		499015D11615FE5300991F6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1230;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = nompute;
 				TargetAttributes = {
 					499015D91615FE5300991F6C = {
@@ -185,6 +186,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		A718F5961A681B6700545966 /* Save current UUID to Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -195,7 +197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "full_version=$(sw_vers -productVersion)\nmajor_version=$(echo $full_version | awk -F \\. {'print $1'})\nminor_version=$(echo $full_version | awk -F \\. {'print $2'})\n\necho \"macOS v${major_version}.${minor_version}\"\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"12\" ]; then\n    compatibility_key=Supported${major_version}.${minor_version}PluginCompatibilityUUIDs\nelse\n    compatibility_key=SupportedPluginCompatibilityUUIDs\nfi\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"15\" ]; then\n    mail_uuid=$(defaults read /System/Applications/Mail.app/Contents/Info PluginCompatibilityUUID)\nelse\n    mail_uuid=$(defaults read /Applications/Mail.app/Contents/Info PluginCompatibilityUUID)\nfi\n\necho \"UUID for your version of Mail.app: ${mail_uuid}\"\n\nif defaults read ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} | grep \"${mail_uuid}\" >/dev/null; then\n    echo \"UUID already exists in ${compatibility_key}\"\nelse\n    echo \"Adding UUID to ${compatibility_key}\"\n    defaults write ${SOURCE_ROOT}/GMailinator/Info.plist ${compatibility_key} -array-add \"${mail_uuid}\"\nfi\n";
+			shellScript = "full_version=$(sw_vers -productVersion)\nmajor_version=$(echo $full_version | awk -F \\. {'print $1'})\nminor_version=$(echo $full_version | awk -F \\. {'print $2'})\n\necho \"macOS v${major_version}.${minor_version}\"\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"12\" ]; then\n    compatibility_key=\"Supported${major_version}\\.${minor_version}PluginCompatibilityUUIDs\"\nelse\n    compatibility_key=SupportedPluginCompatibilityUUIDs\nfi\n\nif [ \"$major_version\" -ge \"11\" ] || [ \"$major_version\" -ge \"10\" -a \"$minor_version\" -ge \"15\" ]; then\n    mail_uuid=$(plutil -extract PluginCompatibilityUUID raw /System/Applications/Mail.app/Contents/Info.plist)\nelse\n    mail_uuid=$(plutil -extract PluginCompatibilityUUID raw /Applications/Mail.app/Contents/Info.plist)\nfi\n\necho \"UUID for your version of Mail.app: ${mail_uuid}\"\n\nif plutil -extract \"${compatibility_key}\" json -o - ${SOURCE_ROOT}/GMailinator/Info.plist | grep \"${mail_uuid}\" >/dev/null; then\n    echo \"UUID already exists in ${compatibility_key}\"\nelse\n    echo \"Adding UUID to ${compatibility_key}\"\n    plutil -insert \"${compatibility_key}\" -json \"[\\\"${mail_uuid}\\\"]\" ${SOURCE_ROOT}/GMailinator/Info.plist\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -241,6 +243,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -292,6 +295,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -313,12 +317,13 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GMailinator/GMailinator-Prefix.pch";
 				INFOPLIST_FILE = GMailinator/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Mail/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 1.0.5;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
@@ -332,12 +337,13 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GMailinator/GMailinator-Prefix.pch";
 				INFOPLIST_FILE = GMailinator/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Mail/Bundles";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nompute.gmailinator.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = GMailinator;
