@@ -1,32 +1,19 @@
-# GMailinator
+# Thundermail.app
 
-Adds Gmail-esque keyboard shorcuts to Mail.app.  This is still very much a work
-in progress.
-
-Tested with Mail for macOS Big Sur.
+Adds Thunderbird-esque keyboard shorcuts to Mail.app.  This is still very much a work
+in progress, and completely unsupported.
 
 ## Supported Shortcuts
 
 |  Key   | Action                         |
 | :----: | ------------------------------ |
 |   #    |  Delete                        |
-|   /    |  Mailbox search                |
-|   !    |  Toggle message as Junk        |
-|   a    |  Reply All                     |
-|   c    |  Compose new message           |
-|  e, y  |  Archive                       |
-|   f    |  Forward message               |
-|   G    |  Go to the last message        |
-|   g    |  Go to the first message       |
-|   j    |  Go to next message/thread     |
-|   k    |  Go to previous message/thread |
-|   l    |  Move to folder (opens dialog) |
-|   o    |  Open selected message         |
-|   R    |  Get new mail (Refresh)        |
+|   a    |  Archive                       |
+|   f    |  Go to next message/thread     |
+|   b    |  Go to previous message/thread |
 |   r    |  Reply                         |
-|   s    |  Flag                          |
-|   u    |  Mark message as read          |
-|   U    |  Mark message as unread        |
+|   m    |  Mark message as read          |
+|   M    |  Mark message as unread        |
 |   v    |  View raw message dialog       |
 |   z    |  Undo                          |
 
@@ -39,15 +26,6 @@ Tested with Mail for macOS Big Sur.
 3. In Mail, open Settings -> General -> Manage Plug-ins, and enable Gmailinator.
     * If you don’t see the "Manage Plug-ins" button, try quitting and re-opening Mail.
 4. You will be prompted to restart Mail to activate the plugin.
-
-## Troubleshooting
-
-- For older macOS version, it may not need to do `spctl`. Try to comment out the line in install.sh and try again.
-
-- Try to do codesign
-```
-codesign -s "<Replace with the identity>" -v -f GMailinator.mailbundle/
-```
 
 ## Credits
 

@@ -110,52 +110,19 @@ SearchManager *_sm;
         break;
     }
     case 'a': {
-        [messageViewer performSelector:@selector(replyAllMessage:)
-                            withObject:nil];
-        break;
-    }
-    case 'c': {
-        [messageViewer performSelector:@selector(showComposeWindow:)
-                            withObject:nil];
-        break;
-    }
-    case 'e':
-    case 'y': {
         [messageViewer performSelector:@selector(archiveMessages:)
                             withObject:nil];
-        break;
-    }
-    case 'f': {
-        [messageViewer performSelector:@selector(forwardMessage:)
-                            withObject:nil];
-        break;
-    }
-    case 'l': {
-        [_sm moveToFolder:nil];
-        break;
-    }
-    case 'o': {
-        [messageViewer performSelector:@selector(openMessages:) withObject:nil];
-        break;
-    }
-    case 'R': {
-        [messageViewer performSelector:@selector(checkNewMail:) withObject:nil];
         break;
     }
     case 'r': {
         [messageViewer performSelector:@selector(replyMessage:) withObject:nil];
         break;
     }
-    case 's': {
-        [messageViewer performSelector:@selector(toggleFlaggedStatus:)
-                            withObject:nil];
-        break;
-    }
-    case 'u': {
+    case 'M': {
         [messageViewer performSelector:@selector(markAsRead:) withObject:nil];
         break;
     }
-    case 'U': {
+    case 'm': {
         [messageViewer performSelector:@selector(markAsUnread:) withObject:nil];
         break;
     }
@@ -210,25 +177,13 @@ SearchManager *_sm;
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'j': { // next message (down)
+    case 'f': { // next message (down)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_DownArrow, true);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
-    case 'J': { // expand selection to next message (down)
-        cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_DownArrow, true);
-        CGEventSetFlags(cgEvent, kCGEventFlagMaskShift);
-        newEvent = [NSEvent eventWithCGEvent:cgEvent];
-        break;
-    }
-    case 'k': { // previous message (up)
+    case 'b': { // previous message (up)
         cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_UpArrow, true);
-        newEvent = [NSEvent eventWithCGEvent:cgEvent];
-        break;
-    }
-    case 'K': { // expand selection to previous message (up)
-        cgEvent = CGEventCreateKeyboardEvent(NULL, kVK_UpArrow, true);
-        CGEventSetFlags(cgEvent, kCGEventFlagMaskShift);
         newEvent = [NSEvent eventWithCGEvent:cgEvent];
         break;
     }
